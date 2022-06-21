@@ -7,6 +7,19 @@
     <title>Inicio</title>
 </head>
 <body>
-    Este es mi inicio
-</body>
+    <p>Este es el inicio de {{nombre}} {{apellido}}</p>
+    {% if edad > 50 %}
+    <p>Esta persona tiene mas de 50 años</p>
+    {% endif %}
+    <ul>
+        {% for valor in lista  %}
+        <li>List {{valor}}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <p>Datos del perro</p>
+        <li>{{perro.nombre}}</li>
+        <li>{{perro.edad}}</li>
+    </ul>
+    </body>
 </html>

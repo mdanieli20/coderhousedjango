@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from datetime import datetime
-from django.template import *
+from django.template import loader
+
+from primerasvistas.models import Perro
 
 def inicio(request):
     return HttpResponse('Hola soy mi primer vista en django')
@@ -13,9 +15,11 @@ def saludo(request, nombre):
     return HttpResponse(f'Hola {nombre}')
 
 def mi_template(request):
-    archivo = open(r'C:\Users\mdanieli\OneDrive\Become a DevOps\Python\CoderHouse\DjangoClases\templates\prueba.html','r')
-    template1 = Template(archivo.read())
-    archivo.close()
-    contexto1 = Context()
-    render1 = template1.render(contexto1)
+    template1 = loader.get_template('prueba.html')
+    nombre = 'manuelito'
+    apellido = 'danieli'
+    lista = [1,2,3,4,5,6,7]
+    perro = Perro(nombre='Leon', edad=12)
+    perro.save()
+    render1 = template1.render({'nombre':nombre, 'apellido':apellido, 'edad':55, 'lista' : lista, 'perro': perro })
     return HttpResponse(render1)
